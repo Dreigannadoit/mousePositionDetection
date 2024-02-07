@@ -7,18 +7,35 @@
 body{
     height: 100dvh;
     width: 100dvw;
-    font-family: 'Rubik Glitch Pop', system-ui;
+    font-family: "Protest Riot", sans-serif;
     overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 main {
+    position: relative;
     height: 100%;
-    width: 100%;
+    width: 80%;
     background-color: rgb(255, 241, 214);
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.side{
+    position: relative;
+    height: 100%;
+    width: 20%;
+    background-color: rgb(69, 175, 218);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .text{
