@@ -1,19 +1,20 @@
 const eyes = document.querySelectorAll('.move');
-const cursor = document.getElementById('cursor')
-const main = document.getElementById('main')
+const cursor = document.getElementById('cursor');
+const main = document.getElementById('main');
 
 let mousePosX, mousePosY;
 let makeCenterX, makeCenterY;
 
-const mousePositionUpdate = (event) => {
-    mousePosX = event.clientX;
-    mousePosY = event.clientY;
+const mousePositionUpdate = (event, element) => {
+    const rect = element.getBoundingClientRect(); // Get the dimensions and position of the element
+    mousePosX = event.clientX - rect.left; // Adjust the mouse position relative to the element
+    mousePosY = event.clientY - rect.top;
 
-    makeCenterX = mousePosX - window.innerWidth / 2;
-    makeCenterY = mousePosY - window.innerHeight / 2;
+    makeCenterX = mousePosX - rect.width / 2; // Use the element's width and height
+    makeCenterY = mousePosY - rect.height / 2;
 }
 
-const getEye = () =>{
+const getEye = () => {
     eyes.forEach((eye) => {
         let speedx = eye.dataset.speedx;
         let speedy = eye.dataset.speedy;
@@ -21,19 +22,12 @@ const getEye = () =>{
     });
 }
 
-const moveEyes = main.addEventListener('mousemove', (e) => {
-    mousePositionUpdate(e);
-    getEye()
+main.addEventListener('mousemove', (e) => {
+    mousePositionUpdate(e, main);
+    getEye();
 });
-// const cantSee = main.addEventListener('mouseout', (e) => {
-//     mousePositionUpdate(e);
-//     eyes.forEach((eye) => {
-//         eye.style.transform = `translateX(-50%) translateY(-50%)`;
-//     });
-// });
 
-
-const moveCursor = window.addEventListener('mousemove', (e) => {
-    mousePositionUpdate(e);
-    cursor.style.transform = `translateX(calc(-50% + ${makeCenterX}px)) translateY(calc(-50% + ${makeCenterY}px))`;
+window.addEventListener('mousemove', (e) => {
+    mousePositionUpdate(e, main); // Use main to get relative coordinates
+    cursor.style.transform = `translateX(calc(-320% + ${makeCenterX}px)) translateY(calc(-50% + ${makeCenterY}px))`;
 });
