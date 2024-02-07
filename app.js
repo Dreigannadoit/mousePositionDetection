@@ -25,17 +25,15 @@ const moveEyes = main.addEventListener('mousemove', (e) => {
     mousePositionUpdate(e);
     getEye()
 });
-
-const cantSee = main.addEventListener('mouseout', (e) => {
-    mousePositionUpdate(e);
-    eyes.forEach((eye) => {
-        eye.style.transform = `translateX(-50%) translateY(-50%)`;
-    });
-});
+// const cantSee = main.addEventListener('mouseout', (e) => {
+//     mousePositionUpdate(e);
+//     eyes.forEach((eye) => {
+//         eye.style.transform = `translateX(-50%) translateY(-50%)`;
+//     });
+// });
 
 
 const moveCursor = window.addEventListener('mousemove', (e) => {
     mousePositionUpdate(e);
-
     cursor.style.transform = `translateX(calc(-50% + ${makeCenterX}px)) translateY(calc(-50% + ${makeCenterY}px))`;
 });
