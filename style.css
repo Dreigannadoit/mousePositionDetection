@@ -76,7 +76,7 @@ main {
 }
 
 .move{
-    transition: 150ms linear;
+    transition: 150ms linear;  /* ease also works */
 }
 
 #cursor{

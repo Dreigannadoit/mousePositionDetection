@@ -1,18 +1,14 @@
-const eyes = document.querySelectorAll('.move'); // Assuming your eyes have a class 'eye'
-const text = document.querySelectorAll('.text');
+const eyes = document.querySelectorAll('.move');
 const cursor = document.getElementById('cursor')
 
 let mousePosX, mousePosY;
 
 window.addEventListener('mousemove', (e) => {
-    text.innerHTML = "i see you";
-    let cursorSpeed = cursor.dataset.speed;
+    mousePosX = e.clientX;  // X position of mouse
+    mousePosY = e.clientY;  // Y position of mouse
 
-    mousePosX = e.clientX;
-    mousePosY = e.clientY;
-
-    const makeCenterX = mousePosX - window.innerWidth / 2;
-    const makeCenterY = mousePosY - window.innerHeight / 2;
+    const makeCenterX = mousePosX - window.innerWidth / 2;   // center X position
+    const makeCenterY = mousePosY - window.innerHeight / 2;  // center Y position
     
     eyes.forEach((eye) => {
         let speedx = eye.dataset.speedx;
@@ -22,8 +18,4 @@ window.addEventListener('mousemove', (e) => {
 
     cursor.style.transform = `translateX(calc(-50% + ${makeCenterX}px)) translateY(calc(-50% + ${makeCenterY}px))`;
     
-});
-
-window.addEventListener("mouseout", () => {
-    text.innerHTML = "where are you?";
 });
